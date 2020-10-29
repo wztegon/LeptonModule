@@ -139,7 +139,7 @@ void LeptonThread::run()
 			if(packetNumber != j) {
 				j = -1;
 				resets += 1;
-				usleep(1000);
+				sleep(10);
 				//Note: we've selected 750 resets as an arbitrary limit, since there should never be 750 "null" packets between two valid transmissions at the current poll rate
 				//By polling faster, developers may easily exceed this count, and the down period between frames may then be flagged as a loss of sync
 				if(resets == 750) {
@@ -148,7 +148,8 @@ void LeptonThread::run()
 					n_wrong_segment = 0;
 					n_zero_value_drop_frame = 0;
 					usleep(750000);
-					SpiOpenPort(0, spiSpeed);
+					int r = SpiOpenPort(0, spiSpeed);
+					std::cout <<"SpiOpenPort :" << r << std::endl;
 				}
 				continue;
 			}
