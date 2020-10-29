@@ -24,7 +24,7 @@ void lepton_perform_ffc() {
 	}
 	LEP_RESULT r =  LEP_GetSysTelemetryEnableState(&_port, &state);
 	std::cout << "LEP_GetSysTelemetryEnableState result: " << r <<std::endl;
-	std::cout << "LEP_GetSysTelemetryEnableState result: " << r <<std::endl;
+	std::cout << "LEP_GetSysTelemetryEnableState state: " << state <<std::endl;
 	LEP_RunSysFFCNormalization(&_port);
 }
 
