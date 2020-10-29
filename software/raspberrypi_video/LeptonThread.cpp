@@ -132,7 +132,10 @@ void LeptonThread::run()
 			int res = read(spi_cs0_fd, result+sizeof(uint8_t)*PACKET_SIZE*j, sizeof(uint8_t)*PACKET_SIZE);
 			int packetNumber = result[j*PACKET_SIZE+1];
 			int head = result[j*PACKET_SIZE];
-			
+			for(int i = 2; i < PACKET_SIZE; i++)
+			{
+				std::cout <<"result[j*PACKET_SIZE+"<< i <<"]:" << result[j*PACKET_SIZE+i] << std::endl;
+			}		
 			//查看包数是否正确
 			std::cout <<"head :" << head << std::endl;
 			std::cout <<"packetNumber :" << packetNumber << std::endl;
@@ -141,7 +144,7 @@ void LeptonThread::run()
 			if(packetNumber != j) {
 				j = -1;
 				resets += 1;
-				usleep(100000);
+				usleep(500000);
 				//Note: we've selected 750 resets as an arbitrary limit, since there should never be 750 "null" packets between two valid transmissions at the current poll rate
 				//By polling faster, developers may easily exceed this count, and the down period between frames may then be flagged as a loss of sync
 				if(resets == 750) {
