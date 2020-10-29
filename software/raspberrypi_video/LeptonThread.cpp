@@ -132,9 +132,11 @@ void LeptonThread::run()
 			int res = read(spi_cs0_fd, result+sizeof(uint8_t)*PACKET_SIZE*j, sizeof(uint8_t)*PACKET_SIZE);
 			int packetNumber = result[j*PACKET_SIZE+1];
 			int head = result[j*PACKET_SIZE];
+			int temp;
 			for(int i = 2; i < PACKET_SIZE; i++)
 			{
-				std::cout <<"result[j*PACKET_SIZE+"<< i <<"]:" << result[j*PACKET_SIZE+i] << std::endl;
+				temp = result[j*PACKET_SIZE+i]；
+				std::cout <<"result["<< j<<"*PACKET_SIZE+"<< i <<"]:" << temp << std::endl;
 			}		
 			//查看包数是否正确
 			std::cout <<"head :" << head << std::endl;
