@@ -133,6 +133,7 @@ void LeptonThread::run()
 			int packetNumber = result[j*PACKET_SIZE+1];
 			//查看包数是否正确
 			std::cout <<"packetNumber :" << packetNumber << std::endl;
+			std::cout <<"resets :" << resets << std::endl;
 			if(packetNumber != j) {
 				j = -1;
 				resets += 1;
