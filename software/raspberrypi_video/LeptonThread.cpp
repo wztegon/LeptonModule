@@ -141,7 +141,7 @@ void LeptonThread::run()
 			if(packetNumber != j) {
 				j = -1;
 				resets += 1;
-				usleep(10000);
+				usleep(100000);
 				//Note: we've selected 750 resets as an arbitrary limit, since there should never be 750 "null" packets between two valid transmissions at the current poll rate
 				//By polling faster, developers may easily exceed this count, and the down period between frames may then be flagged as a loss of sync
 				if(resets == 750) {
