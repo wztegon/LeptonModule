@@ -35,6 +35,7 @@ LeptonThread::LeptonThread() : QThread()
 	autoRangeMax = true;
 	rangeMin = 30000;
 	rangeMax = 32000;
+	std::cout << "Creat QThread!" << std::endl;
 }
 
 LeptonThread::~LeptonThread() {
