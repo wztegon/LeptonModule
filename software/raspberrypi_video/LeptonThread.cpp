@@ -131,11 +131,13 @@ void LeptonThread::run()
 			//if it's a drop packet, reset j to 0, set to -1 so he'll be at 0 again loop
 			int res = read(spi_cs0_fd, result+sizeof(uint8_t)*PACKET_SIZE*j, sizeof(uint8_t)*PACKET_SIZE);
 			int packetNumber = result[j*PACKET_SIZE+1];
-			//查看包数是否正确
+			int head = result[j*PACKET_SIZE];
 			
+			//查看包数是否正确
+			std::cout <<"head :" << head << std::endl;
 			std::cout <<"packetNumber :" << packetNumber << std::endl;
 			std::cout <<"resets :" << resets << std::endl;
-			std::cout <<"res :" << res << std::endl;
+			std::cout <<"read res :" << res << std::endl;
 			if(packetNumber != j) {
 				j = -1;
 				resets += 1;
@@ -153,6 +155,7 @@ void LeptonThread::run()
 				}
 				continue;
 			}
+			
 			if ((typeLepton == 3) && (packetNumber == 20)) {
 				segmentNumber = (result[j*PACKET_SIZE] >> 4) & 0x0f;
 				if ((segmentNumber < 1) || (4 < segmentNumber)) {
@@ -161,6 +164,7 @@ void LeptonThread::run()
 				}
 			}
 		}
+		
 		if(resets >= 30) {
 			log_message(3, "done reading, resets: " + std::to_string(resets));
 		}
