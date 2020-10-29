@@ -135,7 +135,7 @@ void LeptonThread::run()
 			int temp;
 			for(int i = 2; i < PACKET_SIZE; i++)
 			{
-				temp = result[j*PACKET_SIZE+i]；
+				temp = result[j*PACKET_SIZE+i];
 				std::cout <<"result["<< j<<"*PACKET_SIZE+"<< i <<"]:" << temp << std::endl;
 			}		
 			//查看包数是否正确
